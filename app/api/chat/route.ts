@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       const docsMap = documents?.map((doc) => doc.text);
 
       docContext = JSON.stringify(docsMap);
-    } catch (e) {
+    } catch (_e) {
       return new Response("Internal server error collection", { status: 500 });
     }
 
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
     const stream = OpenAIStream(response);
     return new StreamingTextResponse(stream);
     // return new streamText.toDataStreamResponse(stream);
-  } catch (e) {
+  } catch (_e) {
     return new Response("Internal server error embedding", { status: 500 });
   }
 }
